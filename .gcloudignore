@@ -1,0 +1,7 @@
+*
+
+!/Dockerfile
+!/.env.dev
+!/main.py
+!/requirements.txt
+!/.env.dev
