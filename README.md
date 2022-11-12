@@ -15,9 +15,9 @@ make deploy-dev
 ```
 
 ```bash
-curl https://XXX.run.app/trace
+make curl-trace-dev
 
-open "https://console.cloud.google.com/logs/query;query=resource.type%3D%22cloud_run_revision%22%0Aresource.labels.service_name%3D%22structured-logging-gcp-example%22?project=$GOOGLE_CLOUD_PROJECT"
+open (Cloud Logging URL)
 ```
 
 ```bash

@@ -55,6 +55,14 @@ deploy-dev:
 	$(GCLOUD_CMD) run deploy --max-instances=1 --min-instances=0 --region=us-central1 --allow-unauthenticated --source=. $(PROJ_NAME)
 
 
+.PHONY: curl-trace-dev
+curl-trace-dev: SRV_URL = $(shell $(GCLOUD_CMD) run services describe --region=us-central1 structured-logging-gcp-example --format='value(status.address.url)')
+curl-trace-dev:
+	curl $(SRV_URL)/trace
+	@echo -e "\n\n"
+	@echo "  -> Cloud Logging URL: https://console.cloud.google.com/logs/query;query=resource.type%3D%22cloud_run_revision%22%0Aresource.labels.service_name%3D%22structured-logging-gcp-example%22?project=$(GOOGLE_CLOUD_PROJECT)"
+
+
 .PHONY: destroy-dev
 destroy-dev:
 	$(GCLOUD_CMD) run services delete --region=us-central1 $(PROJ_NAME)
